@@ -1,0 +1,74 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <table class="table">  
+        <thead>
+            <tr>
+                <td scope="col">#</td>
+                <td scope="col">Nome</td>
+                <td scope="col">Função</td>
+            </tr>   
+        </thead>
+        <tbody>
+            {% for funcionario in funcionarios %}
+            <tr>
+                <td scope="row">{{funcionario.id}}</td>
+                <td scope="row">{{funcionario.nome}}</td>
+                <td scope="row">{{funcionario.funcao}}</td>
+                <td>
+                    <button type="button" href="" class="btn btn-light">Editar</button>
+                    <button  id="btn-excluir" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button>
+
+                </td>
+            </tr>
+        </tbody>
+            {% endfor %}
+    </table>
+
+
+
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+    
+                <!-- Cabeçalho do Modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Título do Modal</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+    
+                <!-- Corpo do Modal -->
+                <div class="modal-body">
+                    <p>Deseja realmente excluir este aluno?.</p>
+                </div>
+    
+                <!-- Rodapé do Modal -->
+                <div class="modal-footer">
+                    
+                    <a id="excluir" class="btn btn-danger">Excluir</a>
+                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Sair</a>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+<script>
+    $(document).on('click', '#btn-excluir', function (e) {
+        a = document.getElementById('excluir');
+        const id =  $(this).data('id');
+        a.setAttribute("href", "/aluno/excluir/" + id);
+    });
+</script>
+{% endblock %}
+
